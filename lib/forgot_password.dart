@@ -14,10 +14,7 @@ class ForgotPassword extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Edokati(emailController: emailController, formkey: formkey),
-    );
+    return  Edokati(emailController: emailController, formkey: formkey);
   }
 }
 

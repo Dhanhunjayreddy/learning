@@ -1,6 +1,10 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:loginpage/coursePage.dart';
 import 'package:loginpage/forgot_password.dart';
+import 'package:loginpage/login/login_screen.dart';
+
+import 'home/home_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -19,7 +23,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       debugShowCheckedModeBanner: false,
       routes: {
-        '/': (context) => const RegisterPage(),
+        '/': (context) => const HomeScreen(),
         '/forgot-password': (context) => ForgotPassword(),
         '/course-page': (context) => CoursePage(),
       },
@@ -104,6 +108,16 @@ class _RegisterPageState extends State<RegisterPage> {
                         style: TextStyle(
                           color: Theme.of(context).colorScheme.secondary,
                         ),
+                        recognizer:
+                            TapGestureRecognizer()
+                              ..onTap = () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => LoginScreen(),
+                                  ),
+                                );
+                              },
                       ),
                     ],
                   ),
