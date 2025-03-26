@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:loginpage/coursePage.dart';
 
 void main() {
   runApp(ForgotPassword());
@@ -33,19 +34,27 @@ class Edokati extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+      ),
       body: Center(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+          padding: const EdgeInsets.fromLTRB(12.0, 12.0, 12.0, 0),
           child: Form(
             key: formkey,
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const Text(
                   "Forgot Password?",
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
-                  textAlign: TextAlign.center,
+                  textAlign: TextAlign.left,
                 ),
                 const SizedBox(height: 10),
                 const Text(
@@ -89,13 +98,9 @@ class Edokati extends StatelessWidget {
                   child: ElevatedButton(
                     onPressed: () {
                       if (formkey.currentState!.validate()) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(
-                              'Password reset link sent to ${emailController.text}',
-                            ),
-                            backgroundColor: Colors.green,
-                          ),
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => CoursePage()),
                         );
                       }
                     },

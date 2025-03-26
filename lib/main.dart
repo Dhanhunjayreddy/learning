@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:loginpage/coursePage.dart';
+import 'package:loginpage/forgot_password.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,7 +16,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
       ),
-      home: const RegisterPage(),
+      initialRoute: '/',
+      debugShowCheckedModeBanner: false,
+      routes: {
+        '/': (context) => const RegisterPage(),
+        '/forgot-password': (context) => ForgotPassword(),
+        '/course-page': (context) => CoursePage(),
+      },
     );
   }
 }
@@ -33,12 +40,19 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Let’s Get Started!")),
+      appBar: AppBar(
+        title: Center(
+          child: const Text(
+            "Let's Get Started!",
+            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          ),
+        ),
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const Text("Name", style: TextStyle(fontSize: 16)),
               _buildTextField(hintText: "Enter your name"),
@@ -54,7 +68,12 @@ class _RegisterPageState extends State<RegisterPage> {
               const SizedBox(height: 20),
               Center(
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ForgotPassword()),
+                    );
+                  },
                   style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 40,
@@ -63,15 +82,31 @@ class _RegisterPageState extends State<RegisterPage> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
+                    backgroundColor: const Color.fromARGB(255, 77, 16, 230),
                   ),
-                  child: const Text("Create Account"),
+                  child: const Text(
+                    "Create Account",
+                    style: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
+                  ),
                 ),
               ),
               const SizedBox(height: 10),
               Center(
-                child: TextButton(
-                  onPressed: () {},
-                  child: const Text("Have an account? Sign In"),
+                child: RichText(
+                  text: TextSpan(
+                    children: [
+                      TextSpan(
+                        text: 'Have an account? ',
+                        style: TextStyle(color: Colors.black),
+                      ),
+                      TextSpan(
+                        text: 'Sign In',
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.secondary,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],
