@@ -11,8 +11,8 @@ import '../utilities/text_field_decoration.dart';
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
 
-  GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  TextEditingController emailController = TextEditingController();
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final TextEditingController emailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -105,7 +105,7 @@ class LoginScreen extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => HomeScreen(),
+                              builder: (context) => BookDemoScreen(),
                             ),
                           );
                         } else {

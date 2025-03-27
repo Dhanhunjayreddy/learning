@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:loginpage/coursePage.dart';
-
-void main() {
-  runApp(ForgotPassword());
-}
+import 'package:loginpage/course_inside.dart';
 
 class ForgotPassword extends StatelessWidget {
   ForgotPassword({super.key});
@@ -14,7 +10,7 @@ class ForgotPassword extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Edokati(emailController: emailController, formkey: formkey);
+    return Edokati(emailController: emailController, formkey: formkey);
   }
 }
 

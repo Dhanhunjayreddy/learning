@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -86,6 +82,8 @@ class CoursePage extends StatelessWidget {
 }
 
 class BlankPage extends StatelessWidget {
+  const BlankPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -1,10 +1,9 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:loginpage/coursePage.dart';
+import 'package:loginpage/course_inside.dart';
 import 'package:loginpage/forgot_password.dart';
+import 'package:loginpage/home/home_screen.dart';
 import 'package:loginpage/login/login_screen.dart';
-
-import 'home/home_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -23,9 +22,11 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       debugShowCheckedModeBanner: false,
       routes: {
-        '/': (context) => const HomeScreen(),
-        '/forgot-password': (context) => ForgotPassword(),
+        '/': (context) => RegisterPage(),
         '/course-page': (context) => CoursePage(),
+        '/book-a-demo': (context) => LoginScreen(),
+        '/forgot-password': (context) => ForgotPassword(),
+        '/courses': (context) => CoursePage(),
       },
     );
   }
@@ -75,7 +76,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => ForgotPassword()),
+                      MaterialPageRoute(builder: (context) => CoursePage()),
                     );
                   },
                   style: ElevatedButton.styleFrom(
