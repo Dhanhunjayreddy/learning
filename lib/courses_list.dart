@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:loginpage/course_inside.dart';
 
 class CoursesList extends StatelessWidget {
   const CoursesList({super.key});
@@ -175,7 +176,7 @@ class CoursePage extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const BlankPage(),
+                                builder: (context) => const CourseInside(),
                               ),
                             );
                           },

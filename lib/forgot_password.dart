@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:loginpage/course_inside.dart';
+
+import 'package:loginpage/otp_verify/otp_verify_screen.dart';
 
 class ForgotPassword extends StatelessWidget {
   ForgotPassword({super.key});
@@ -93,7 +94,9 @@ class Edokati extends StatelessWidget {
                       if (formkey.currentState!.validate()) {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => CoursePage()),
+                          MaterialPageRoute(
+                            builder: (context) => OtpVerifyScreen(),
+                          ),
                         );
                       }
                     },

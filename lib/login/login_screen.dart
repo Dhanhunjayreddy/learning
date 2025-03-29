@@ -1,8 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:loginpage/main.dart';
-
-import '../home/home_screen.dart';
+import 'package:loginpage/book_a_demo.dart';
+import 'package:loginpage/forgot_password.dart';
 import '../otp_verify/otp_verify_screen.dart';
 import '../utilities/form_utils.dart';
 import '../utilities/snackbar.dart';
@@ -85,7 +84,7 @@ class LoginScreen extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => OtpVerifyScreen(),
+                            builder: (context) => ForgotPassword(),
                           ),
                         );
                       },
@@ -105,7 +104,7 @@ class LoginScreen extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => BookDemoScreen(),
+                              builder: (context) => OtpVerifyScreen(),
                             ),
                           );
                         } else {
@@ -142,7 +141,7 @@ class LoginScreen extends StatelessWidget {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => RegisterPage(),
+                                        builder: (context) => OtpVerifyScreen(),
                                       ),
                                     );
                                   },
@@ -155,7 +154,14 @@ class LoginScreen extends StatelessWidget {
                   Align(
                     alignment: Alignment.center,
                     child: OutlinedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => BookDemoScreen(),
+                          ),
+                        );
+                      },
                       child: Text("Book Demo"),
                     ),
                   ),

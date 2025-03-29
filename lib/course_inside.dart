@@ -1,23 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:loginpage/home/home_screen.dart';
+import 'package:loginpage/module_wise.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Course Progress',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
-      ),
-      home: const CoursePage(),
-    );
-  }
-}
-
-class CoursePage extends StatelessWidget {
-  const CoursePage({super.key});
+class CourseInside extends StatelessWidget {
+  const CourseInside({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +18,12 @@ class CoursePage extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pop(
+              context,
+              MaterialPageRoute(builder: (context) => HomeScreen()),
+            );
+          },
         ),
         title: const Text(
           "Flutter Development - Beginner",
@@ -69,7 +60,7 @@ class CoursePage extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => BlankPage()),
+                  MaterialPageRoute(builder: (context) => ModuleWise()),
                 );
                 // Handle navigation or actions
               },
@@ -77,26 +68,6 @@ class CoursePage extends StatelessWidget {
           );
         },
       ),
-    );
-  }
-}
-
-class BlankPage extends StatelessWidget {
-  const BlankPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Blank Page'),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-      ),
-      body: Center(child: Text('This is a blank page')),
     );
   }
 }

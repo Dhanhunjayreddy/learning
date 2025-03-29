@@ -2,7 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:loginpage/course_inside.dart';
 import 'package:loginpage/forgot_password.dart';
-import 'package:loginpage/home/home_screen.dart';
+
 import 'package:loginpage/login/login_screen.dart';
 
 void main() {
@@ -23,10 +23,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routes: {
         '/': (context) => RegisterPage(),
-        '/course-page': (context) => CoursePage(),
+        '/course-page': (context) => CourseInside(),
         '/book-a-demo': (context) => LoginScreen(),
         '/forgot-password': (context) => ForgotPassword(),
-        '/courses': (context) => CoursePage(),
       },
     );
   }
@@ -76,7 +75,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => CoursePage()),
+                      MaterialPageRoute(builder: (context) => CourseInside()),
                     );
                   },
                   style: ElevatedButton.styleFrom(
