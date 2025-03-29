@@ -1,9 +1,12 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:loginpage/book_a_demo.dart';
 import 'package:loginpage/course_inside.dart';
 import 'package:loginpage/forgot_password.dart';
 
 import 'package:loginpage/login/login_screen.dart';
+
+import 'home/home_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -22,10 +25,12 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       debugShowCheckedModeBanner: false,
       routes: {
-        '/': (context) => RegisterPage(),
+        '/': (context) => LoginScreen(),
+        '/home': (context) => HomeScreen(),
         '/course-page': (context) => CourseInside(),
-        '/book-a-demo': (context) => LoginScreen(),
-        '/forgot-password': (context) => ForgotPassword(),
+        '/book_a_demo': (context) => BookDemoScreen(),
+        '/registration': (context) => RegisterPage(),
+        '/forgot_password': (context) => ForgotPassword(),
       },
     );
   }

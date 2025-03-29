@@ -32,15 +32,13 @@ class _OtpVerifyScreenState extends State<OtpVerifyScreen> {
   startTimer() {
     secondsRemaining = 5;
     timer = Timer.periodic(Duration(seconds: 1), (_) {
-      if (secondsRemaining != 0) {
-        setState(() {
+      setState(() {
+        if (secondsRemaining != 0) {
           secondsRemaining--;
-        });
-      } else {
-        setState(() {
+        } else {
           enableResend = true;
-        });
-      }
+        }
+      });
     });
   }
 

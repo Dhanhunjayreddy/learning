@@ -2,6 +2,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:loginpage/book_a_demo.dart';
 import 'package:loginpage/forgot_password.dart';
+import 'package:loginpage/main.dart';
+import '../home/home_screen.dart';
 import '../otp_verify/otp_verify_screen.dart';
 import '../utilities/form_utils.dart';
 import '../utilities/snackbar.dart';
@@ -16,7 +18,9 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -81,12 +85,14 @@ class LoginScreen extends StatelessWidget {
                     alignment: Alignment.topRight,
                     child: TextButton(
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => ForgotPassword(),
-                          ),
-                        );
+                        // Navigator.pop(context);
+                        Navigator.pushNamed(context, '/forgot_password');
+                        // Navigator.push(
+                        //   context,
+                        //   MaterialPageRoute(
+                        //     builder: (context) => ForgotPassword(),
+                        //   ),
+                        // );
                       },
                       child: Text("Forgot Password?"),
                     ),
@@ -99,14 +105,10 @@ class LoginScreen extends StatelessWidget {
                         if (formKey.currentState?.validate() ?? false) {
                           snack(
                             context,
-                            'Password reset link sent to ${emailController.text}',
+                            'Password reset link sent to ${emailController
+                                .text}',
                           );
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => OtpVerifyScreen(),
-                            ),
-                          );
+                          Navigator.pushReplacementNamed(context, '/home');
                         } else {
                           snack(
                             context,
@@ -136,15 +138,15 @@ class LoginScreen extends StatelessWidget {
                               fontSize: 18,
                             ),
                             recognizer:
-                                TapGestureRecognizer()
-                                  ..onTap = () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => OtpVerifyScreen(),
-                                      ),
-                                    );
-                                  },
+                            TapGestureRecognizer()
+                              ..onTap = () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => RegisterPage(),
+                                  ),
+                                );
+                              },
                           ),
                         ],
                       ),
@@ -155,12 +157,13 @@ class LoginScreen extends StatelessWidget {
                     alignment: Alignment.center,
                     child: OutlinedButton(
                       onPressed: () {
-                        Navigator.push(
+                        Navigator.pushNamed(context, "/book_a_demo");
+                        /*Navigator.push(
                           context,
                           MaterialPageRoute(
                             builder: (context) => BookDemoScreen(),
                           ),
-                        );
+                        );*/
                       },
                       child: Text("Book Demo"),
                     ),
