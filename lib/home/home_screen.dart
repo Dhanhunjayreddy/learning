@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:loginpage/courses_list.dart';
+import 'package:loginpage/courses.dart';
 import 'package:loginpage/profile/profile_screen.dart';
 
 import '../utilities/theme.dart';
@@ -103,7 +103,7 @@ class HomeScreen extends StatelessWidget {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => CoursesList(),
+                                    builder: (context) => CoursePage(),
                                   ),
                                 );
                               },
@@ -134,6 +134,7 @@ class HomeScreen extends StatelessWidget {
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(12.0),
+                // image: DecorationImage(image: NetworkImage("https://plus.unsplash.com/premium_photo-1683865776032-07bf70b0add1?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8dXJsfGVufDB8fDB8fHww")),
                 boxShadow: [
                   BoxShadow(
                     color: Colors.black12,
@@ -148,7 +149,7 @@ class HomeScreen extends StatelessWidget {
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Image.asset("asset/images/flutter-logo.png", height: 40),
+                      Image.asset("asset/images/flutter_icon.jpeg", height: 40),
                       const SizedBox(width: 12),
                       Expanded(
                         child: Column(

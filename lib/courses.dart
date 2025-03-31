@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'course_inside.dart';
+
 class CoursePage extends StatelessWidget {
   const CoursePage({super.key});
 
@@ -79,8 +81,9 @@ class CoursePage extends StatelessWidget {
             ),
           ),
           // Course List
-          Expanded(
+          Flexible(
             child: ListView.builder(
+              shrinkWrap: true,
               padding: const EdgeInsets.all(16),
               itemCount: courses.length,
               itemBuilder: (context, index) {
@@ -96,16 +99,43 @@ class CoursePage extends StatelessWidget {
                         Icon(course["icon"], size: 40, color: Colors.blue),
                         const SizedBox(width: 16),
                         // Course Details
-                        Expanded(
+                        Flexible(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                "Development",
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  color: Colors.grey[600],
-                                ),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "Development",
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      color: Colors.grey[600],
+                                    ),
+                                  ),
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      // Navigator.pushNamed(context, "/course_details");
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => const CourseInside(),
+                                        ),
+                                      );
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: course["typeColor"],
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                    ),
+                                    child: Text(
+                                      course["type"],
+                                      style: const TextStyle(color: Colors.white),
+                                    ),
+                                  ),
+                                ],
                               ),
                               const SizedBox(height: 4),
                               Text(
@@ -153,27 +183,8 @@ class CoursePage extends StatelessWidget {
                             ],
                           ),
                         ),
+
                         // Live/Recorded Button
-                        ElevatedButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const BlankPage(),
-                              ),
-                            );
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: course["typeColor"],
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                          ),
-                          child: Text(
-                            course["type"],
-                            style: const TextStyle(color: Colors.white),
-                          ),
-                        ),
                       ],
                     ),
                   ),

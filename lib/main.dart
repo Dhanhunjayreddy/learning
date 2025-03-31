@@ -7,6 +7,7 @@ import 'package:loginpage/forgot_password.dart';
 import 'package:loginpage/login/login_screen.dart';
 import 'package:loginpage/reset_password.dart';
 
+import 'courses.dart';
 import 'home/home_screen.dart';
 
 void main() {
@@ -26,12 +27,13 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       debugShowCheckedModeBanner: false,
       routes: {
-        '/': (context) => LoginScreen(),
+        '/': (context) => CoursePage(),
         '/home': (context) => HomeScreen(),
         '/course-page': (context) => CourseInside(),
         '/book_a_demo': (context) => BookDemoScreen(),
         '/registration': (context) => RegisterPage(),
         '/forgot_password': (context) => ForgotPassword(),
+        '/course_details': (context) => CourseDetailsScreen(),
       },
     );
   }
