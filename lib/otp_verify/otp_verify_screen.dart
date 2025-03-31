@@ -2,8 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-import '../utilities/theme.dart';
+import 'package:loginpage/login/login_screen.dart';
 
 class OtpVerifyScreen extends StatefulWidget {
   const OtpVerifyScreen({super.key});
@@ -45,6 +44,20 @@ class _OtpVerifyScreenState extends State<OtpVerifyScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => LoginScreen()),
+            );
+            // Leave navigation to use
+          },
+        ),
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+      ),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12.0),
@@ -59,9 +72,23 @@ class _OtpVerifyScreenState extends State<OtpVerifyScreen> {
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 10),
-              const Text(
-                "Enter the authentication Code sent to your mail address hello@example.com",
+              RichText(
                 textAlign: TextAlign.center,
+                text: TextSpan(
+                  style: const TextStyle(color: Colors.black),
+                  children: [
+                    const TextSpan(
+                      text:
+                          "Enter the authentication Code sent to your mail address ",
+                    ),
+                    TextSpan(
+                      text: "hello@example.com",
+                      style: TextStyle(
+                        color: const Color.fromARGB(255, 79, 18, 233),
+                      ),
+                    ),
+                  ],
+                ),
               ),
               const SizedBox(height: 20),
               Row(
@@ -106,7 +133,25 @@ class _OtpVerifyScreenState extends State<OtpVerifyScreen> {
                         : null,
                 child: Text(
                   "Resend OTP  ${secondsRemaining == 0 ? "" : ":$secondsRemaining"}",
-                  style: TextStyle(color: HanvisuColorTheme.blackColor),
+                  style: TextStyle(
+                    color: const Color.fromARGB(255, 79, 18, 233),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 20),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () {
+                    // Confirm action left to user
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color.fromARGB(255, 79, 18, 233),
+                  ),
+                  child: const Text(
+                    "Confirm",
+                    style: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
+                  ),
                 ),
               ),
             ],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:loginpage/course_inside.dart';
+import 'package:loginpage/home/home_screen.dart';
 
 class CoursesList extends StatelessWidget {
   const CoursesList({super.key});
@@ -57,7 +58,12 @@ class CoursePage extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => HomeScreen()),
+            );
+          },
         ),
         title: const Text(
           "Courses",

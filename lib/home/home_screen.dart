@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:loginpage/courses_list.dart';
+import 'package:loginpage/profile/profile_screen.dart';
 
 import '../utilities/theme.dart';
 
 class HomeScreen extends StatelessWidget {
-   HomeScreen({super.key});
+  HomeScreen({super.key});
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return PopScope(
-      canPop:false,
-      onPopInvokedWithResult:(e,_){},
+      canPop: false,
+      onPopInvokedWithResult: (e, _) {},
       child: Scaffold(
         key: _scaffoldKey,
         appBar: AppBar(
@@ -26,7 +28,10 @@ class HomeScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(decoration: BoxDecoration(color: Colors.blue)),
-              Text("Home", style: TextStyle(color: HanvisuColorTheme.blackColor)),
+              Text(
+                "Home",
+                style: TextStyle(color: HanvisuColorTheme.blackColor),
+              ),
               TextButton(
                 onPressed: () {
                   Navigator.push(
@@ -38,9 +43,13 @@ class HomeScreen extends StatelessWidget {
                   "Profile",
                   style: TextStyle(color: HanvisuColorTheme.blackColor),
                 ),
-              ),TextButton(
+              ),
+              TextButton(
                 onPressed: () {
-                 Navigator.pushReplacementNamed(context, "/");
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ProfileScreen()),
+                  );
                 },
                 child: Text(
                   "LogOut",
@@ -90,7 +99,14 @@ class HomeScreen extends StatelessWidget {
                             ),
                             SizedBox(height: 12),
                             ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => CoursesList(),
+                                  ),
+                                );
+                              },
                               child: Text(
                                 "Explore Courses",
                                 style: TextStyle(
@@ -108,6 +124,98 @@ class HomeScreen extends StatelessWidget {
                         height: 150,
                       ),
                     ],
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 12.0),
+              padding: EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(12.0),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black12,
+                    blurRadius: 6,
+                    offset: Offset(0, 2),
+                  ),
+                ],
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Image.asset("asset/images/flutter-logo.png", height: 40),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              "Development",
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Colors.black54,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                            const SizedBox(height: 4),
+                            const Text(
+                              "Flutter Developement - Beginner Level",
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                              ),
+                            ),
+                            const SizedBox(height: 8),
+                            Row(
+                              children: const [
+                                Icon(
+                                  Icons.access_time,
+                                  size: 16,
+                                  color: Colors.grey,
+                                ),
+                                SizedBox(width: 4),
+                                Text(
+                                  "42 Hrs",
+                                  style: TextStyle(color: Colors.grey),
+                                ),
+                                SizedBox(width: 12),
+                                Icon(
+                                  Icons.menu_book_outlined,
+                                  size: 16,
+                                  color: Colors.grey,
+                                ),
+                                SizedBox(width: 4),
+                                Text(
+                                  "12 Chapters",
+                                  style: TextStyle(color: Colors.grey),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 16),
+                  const Text(
+                    "36% Progress",
+                    style: TextStyle(color: Colors.black),
+                  ),
+                  const SizedBox(height: 8),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: LinearProgressIndicator(
+                      value: 0.36,
+                      minHeight: 8,
+                      backgroundColor: Colors.grey[300],
+                      color: Color.fromARGB(255, 77, 16, 230),
+                    ),
                   ),
                 ],
               ),
@@ -154,19 +262,6 @@ class LessonDetailScreen extends StatelessWidget {
     );
   }
 }
-
-class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('Profile')),
-      body: Center(child: Text('Profile Screen')),
-    );
-  }
-}
-
 
 void _showMyDialog(BuildContext context) {
   showDialog(

@@ -60,13 +60,13 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - asset/images/
+    - assets/images/
   #   - images/a_dot_ham.jpeg
 flutter_native_splash:
   color: "#FFFFFF"  # Background color of splash screen
-  image: asset/images/place_holder.jpg  # Path to your splash image
+  image: assets/images/hanivisu_technologies_logo.jpeg  # Path to your splash image
   color_dark: "#000000"  # Background color for dark mode
-  image_dark: asset/images/place_holder.jpg # Splash image for dark mode
+  image_dark: assets/images/hanivisu_technologies_logo.jpeg # Splash image for dark mode
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
 

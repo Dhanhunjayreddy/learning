@@ -5,6 +5,7 @@ import 'package:loginpage/course_inside.dart';
 import 'package:loginpage/forgot_password.dart';
 
 import 'package:loginpage/login/login_screen.dart';
+import 'package:loginpage/reset_password.dart';
 
 import 'home/home_screen.dart';
 
@@ -49,86 +50,136 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Center(
-          child: const Text(
-            "Let's Get Started!",
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-          ),
-        ),
-      ),
+      appBar: AppBar(automaticallyImplyLeading: true),
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const Text("Name", style: TextStyle(fontSize: 16)),
-              _buildTextField(hintText: "Enter your name"),
-              const SizedBox(height: 10),
-              const Text("Mobile Number", style: TextStyle(fontSize: 16)),
-              _buildTextField(hintText: "Enter your mobile number"),
-              const SizedBox(height: 10),
-              const Text("Email Address", style: TextStyle(fontSize: 16)),
-              _buildTextField(hintText: "Enter your email address"),
-              const SizedBox(height: 10),
-              const Text("Set Password", style: TextStyle(fontSize: 16)),
-              _buildPasswordField(hintText: "6+ Characters, 1 Capital letter"),
-              const SizedBox(height: 20),
-              Center(
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => CourseInside()),
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 40,
-                      vertical: 15,
-                    ),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    backgroundColor: const Color.fromARGB(255, 77, 16, 230),
-                  ),
-                  child: const Text(
-                    "Create Account",
-                    style: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 10),
-              Center(
-                child: RichText(
-                  text: TextSpan(
-                    children: [
-                      TextSpan(
-                        text: 'Have an account? ',
-                        style: TextStyle(color: Colors.black),
+        child: Center(
+          child: ConstrainedBox(
+            constraints: BoxConstraints(maxWidth: 350),
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "Let's Get Started!",
+                      style: TextStyle(
+                        fontSize: 34,
+                        fontWeight: FontWeight.bold,
                       ),
-                      TextSpan(
-                        text: 'Sign In',
-                        style: TextStyle(
-                          color: Theme.of(context).colorScheme.secondary,
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  const Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "Name",
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  _buildTextField(hintText: "Enter your name"),
+                  const SizedBox(height: 20),
+                  const Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "Mobile Number",
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  _buildTextField(hintText: "Enter your mobile number"),
+                  const SizedBox(height: 20),
+                  const Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "Email Address",
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  _buildTextField(hintText: "Enter your email address"),
+                  const SizedBox(height: 20),
+                  const Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "Set Password",
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  _buildPasswordField(
+                    hintText: "6+ Characters, 1 Capital letter",
+                  ),
+                  const SizedBox(height: 20),
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => CourseInside(),
+                          ),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color.fromARGB(255, 79, 18, 233),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
                         ),
-                        recognizer:
-                            TapGestureRecognizer()
-                              ..onTap = () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => LoginScreen(),
-                                  ),
-                                );
-                              },
+                        padding: EdgeInsets.symmetric(vertical: 16),
                       ),
-                    ],
+                      child: Text(
+                        "Create Account",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
                   ),
-                ),
+                  const SizedBox(height: 20),
+                  Center(
+                    child: RichText(
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            text: 'Have an account? ',
+                            style: TextStyle(color: Colors.black),
+                          ),
+                          TextSpan(
+                            text: 'Sign In',
+                            style: TextStyle(
+                              color: Color.fromARGB(255, 79, 18, 233),
+                            ),
+                            recognizer:
+                                TapGestureRecognizer()
+                                  ..onTap = () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => LoginScreen(),
+                                      ),
+                                    );
+                                  },
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
         ),
       ),
