@@ -5,6 +5,7 @@ import 'package:loginpage/course_inside.dart';
 import 'package:loginpage/forgot_password.dart';
 
 import 'package:loginpage/login/login_screen.dart';
+import 'package:loginpage/otp_verify/otp_verify_screen.dart';
 import 'package:loginpage/reset_password.dart';
 
 import 'courses.dart';
@@ -130,7 +131,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => CourseInside(),
+                            builder: (context) => OtpVerifyScreen(),
                           ),
                         );
                       },

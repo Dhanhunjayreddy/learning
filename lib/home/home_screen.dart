@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:loginpage/courses.dart';
+import 'package:loginpage/login/login_screen.dart';
 import 'package:loginpage/profile/profile_screen.dart';
 
 import '../utilities/theme.dart';
@@ -48,7 +49,7 @@ class HomeScreen extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => ProfileScreen()),
+                    MaterialPageRoute(builder: (context) => LoginScreen()),
                   );
                 },
                 child: Text(

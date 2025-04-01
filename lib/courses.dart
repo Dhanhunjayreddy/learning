@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:loginpage/home/home_screen.dart';
 
 import 'course_inside.dart';
 
@@ -42,7 +43,12 @@ class CoursePage extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => HomeScreen()),
+            );
+          },
         ),
         title: const Text(
           "Courses",
@@ -105,7 +111,8 @@ class CoursePage extends StatelessWidget {
                             children: [
                               Row(
                                 crossAxisAlignment: CrossAxisAlignment.end,
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
                                     "Development",
@@ -120,7 +127,8 @@ class CoursePage extends StatelessWidget {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                          builder: (context) => const CourseInside(),
+                                          builder:
+                                              (context) => const CourseInside(),
                                         ),
                                       );
                                     },
@@ -132,7 +140,9 @@ class CoursePage extends StatelessWidget {
                                     ),
                                     child: Text(
                                       course["type"],
-                                      style: const TextStyle(color: Colors.white),
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                      ),
                                     ),
                                   ),
                                 ],
@@ -194,26 +204,6 @@ class CoursePage extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-}
-
-class BlankPage extends StatelessWidget {
-  const BlankPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Course Details'),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-      ),
-      body: const Center(child: Text('This is a course details page')),
     );
   }
 }
