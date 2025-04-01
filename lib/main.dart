@@ -8,10 +8,12 @@ import 'package:loginpage/login/login_screen.dart';
 import 'package:loginpage/otp_verify/otp_verify_screen.dart';
 import 'package:loginpage/reset_password.dart';
 
+import 'chapter_play/chapter_play_screen.dart';
 import 'courses.dart';
 import 'home/home_screen.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());
 }
 
@@ -28,7 +30,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       debugShowCheckedModeBanner: false,
       routes: {
-        '/': (context) => CoursePage(),
+        '/': (context) => ChapterPlayScreen(),
         '/home': (context) => HomeScreen(),
         '/course-page': (context) => CourseInside(),
         '/book_a_demo': (context) => BookDemoScreen(),
