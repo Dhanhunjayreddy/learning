@@ -1,9 +1,8 @@
-import 'dart:html' as html;
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:video_player/video_player.dart';
+import 'package:universal_html/html.dart' as html;
 
 class ChapterPlayScreen extends StatefulWidget {
   const ChapterPlayScreen({super.key});
@@ -52,13 +51,6 @@ class _ChapterPlayScreenState extends State<ChapterPlayScreen> {
       SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
     } else {
       SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
-    }
-  }
-
-  void _enterFullScreenWeb() {
-    final videoElement = html.document.querySelector('video');
-    if (videoElement != null) {
-      videoElement.requestFullscreen();
     }
   }
 
