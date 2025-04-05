@@ -28,9 +28,10 @@ class MyApp extends StatelessWidget {
 }
 
 class AdmissionFormPage extends StatefulWidget {
-  const AdmissionFormPage({super.key, this.userFormData});
+  const AdmissionFormPage({super.key, this.userFormData, this.docId});
 
   final Map<String, dynamic>? userFormData;
+  final String? docId;
 
   @override
   State<AdmissionFormPage> createState() => _AdmissionFormPageState();
@@ -38,31 +39,41 @@ class AdmissionFormPage extends StatefulWidget {
 
 class _AdmissionFormPageState extends State<AdmissionFormPage> {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-@override
+
+  @override
   void initState() {
-    if(widget.userFormData?.isNotEmpty ?? false){
-       enquiryNoController.text = widget.userFormData?["enquiryNumber"];
-       submissionDateController.text = widget.userFormData?["submissionDate"];
-       admissionIntoClassController.text = widget.userFormData?["admissionOnClass"];
-       studentNameController.text = widget.userFormData?["StudentName"];
-       dateOfBirthController.text = widget.userFormData?["DateOfBirth"];
-       motherTongueController.text = widget.userFormData?["MotherTongue"];
-       classPresentlyStudyingController.text =widget.userFormData?["presentClass"];
-       nameAndLocationController.text = widget.userFormData?["location"];
-       secondLanguageController.text = widget.userFormData?["secondLanguage"];
-       thirdLanguageController.text = widget.userFormData?["thirdLang"];
-       percentageController.text = widget.userFormData?["percentage"];
-       schoolChangeReasonController.text = widget.userFormData?["reasonForSchoolChange"];
-       specialTalentsController.text = widget.userFormData?["specialTalents"];
-       chooseImageController.text= widget.userFormData?["chooseImage"];
+    print("widget.docId...${widget.docId}");
+    if (widget.userFormData?.isNotEmpty ?? false) {
+      enquiryNoController.text = widget.userFormData?["enquiryNumber"];
+      submissionDateController.text = widget.userFormData?["submissionDate"];
+      admissionIntoClassController.text =
+          widget.userFormData?["admissionOnClass"];
+      studentNameController.text = widget.userFormData?["StudentName"];
+      dateOfBirthController.text = widget.userFormData?["DateOfBirth"];
+      motherTongueController.text = widget.userFormData?["MotherTongue"];
+      classPresentlyStudyingController.text =
+          widget.userFormData?["presentClass"];
+      nameAndLocationController.text = widget.userFormData?["location"];
+      secondLanguageController.text = widget.userFormData?["secondLanguage"];
+      thirdLanguageController.text = widget.userFormData?["thirdLang"];
+      percentageController.text = widget.userFormData?["percentage"];
+      schoolChangeReasonController.text =
+          widget.userFormData?["reasonForSchoolChange"];
+      specialTalentsController.text = widget.userFormData?["specialTalents"];
+      chooseImageController.text = widget.userFormData?["chooseImage"];
     }
 
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
+        leading: IconButton(onPressed: (){
+          Navigator.of(context).pop("update");
+        }, icon: Icon(Icons.arrow_back)),
         title: const Text(
           'Delhi World Public School',
           style: TextStyle(
@@ -369,26 +380,20 @@ class _AdmissionFormPageState extends State<AdmissionFormPage> {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () async {
-                    await _firestore.collection('userForm').add({
-                      'enquiryNumber': enquiryNoController.text.trim(),
-                      'submissionDate': submissionDateController.text.trim(),
-                      'admissionOnClass':
-                          admissionIntoClassController.text.trim(),
-                      'StudentName': studentNameController.text.trim(),
-                      'DateOfBirth': dateOfBirthController.text.trim(),
-                      'MotherTongue': motherTongueController.text.trim(),
-                      'presentClass':
-                          classPresentlyStudyingController.text.trim(),
-                      'location': nameAndLocationController.text.trim(),
-                      'secondLanguage': secondLanguageController.text.trim(),
-                      'thirdLang': thirdLanguageController.text.trim(),
-                      'percentage': percentageController.text.trim(),
-                      'reasonForSchoolChange':
-                          schoolChangeReasonController.text.trim(),
-                      'specialTalents': specialTalentsController.text.trim(),
-                      'chooseImage': chooseImageController.text.trim(),
+                    Map<String, dynamic> firebaseBody = createABody({
                       'createdAt': Timestamp.now(),
                     });
+                    Map<String, dynamic> firebaseBodyUpdate = createABody({
+                      'UpdateAt': Timestamp.now(),
+                    });
+                    if (widget.docId == null) {
+                      await _firestore.collection('userForm').add(firebaseBody);
+                    } else {
+                      await _firestore
+                          .collection('userForm')
+                          .doc(widget.docId)
+                          .update(firebaseBodyUpdate);
+                    }
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blue,
@@ -397,9 +402,9 @@ class _AdmissionFormPageState extends State<AdmissionFormPage> {
                       borderRadius: BorderRadius.circular(8),
                     ),
                   ),
-                  child: const Text(
-                    'Submit',
-                    style: TextStyle(
+                  child: Text(
+                    (widget.docId?.isEmpty ?? true) ? 'Submit' : 'Update',
+                    style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
@@ -412,6 +417,27 @@ class _AdmissionFormPageState extends State<AdmissionFormPage> {
         ),
       ),
     );
+  }
+
+  Map<String, dynamic> createABody(Map<String, dynamic> body) {
+    Map<String, dynamic> firebaseBody = {
+      'enquiryNumber': enquiryNoController.text.trim(),
+      'submissionDate': submissionDateController.text.trim(),
+      'admissionOnClass': admissionIntoClassController.text.trim(),
+      'StudentName': studentNameController.text.trim(),
+      'DateOfBirth': dateOfBirthController.text.trim(),
+      'MotherTongue': motherTongueController.text.trim(),
+      'presentClass': classPresentlyStudyingController.text.trim(),
+      'location': nameAndLocationController.text.trim(),
+      'secondLanguage': secondLanguageController.text.trim(),
+      'thirdLang': thirdLanguageController.text.trim(),
+      'percentage': percentageController.text.trim(),
+      'reasonForSchoolChange': schoolChangeReasonController.text.trim(),
+      'specialTalents': specialTalentsController.text.trim(),
+      'chooseImage': chooseImageController.text.trim(),
+      ...body,
+    };
+    return firebaseBody;
   }
 
   TextEditingController enquiryNoController = TextEditingController();

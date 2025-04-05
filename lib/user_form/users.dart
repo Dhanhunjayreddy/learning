@@ -15,6 +15,7 @@ class _UsersListFormScreenState extends State<UsersListFormScreen> {
   List? userFormList = [];
 
   gettingFireBaseData() async {
+    userFormList?.clear();
     userFormQuerySnapshot = await _firestore.collection('userForm').get();
 
     userFormQuerySnapshot?.docs.map((doc) {
@@ -33,18 +34,41 @@ class _UsersListFormScreenState extends State<UsersListFormScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => AdmissionFormPage()),
+              );
+            },
+            icon: Icon(Icons.add),
+          ),
+        ],
+      ),
       body: ListView.builder(
         itemCount: userFormList?.length,
         itemBuilder: (context, index) {
           var details = userFormList?[index];
+          String docId = userFormQuerySnapshot?.docs[index].id ?? "";
           return Card(
             child: ListTile(
-              onTap: () {
-                Navigator.push(
+              onTap: () async {
+                String result = await Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => AdmissionFormPage(userFormData: details,)),
+                  MaterialPageRoute(
+                    builder:
+                        (context) => AdmissionFormPage(
+                          userFormData: details,
+                          docId: docId,
+                        ),
+                  ),
                 );
+                print("result...$result");
+                if (result.toLowerCase() == "update") {
+                   gettingFireBaseData();
+                }
               },
               trailing: Icon(Icons.arrow_forward_ios_sharp),
 
