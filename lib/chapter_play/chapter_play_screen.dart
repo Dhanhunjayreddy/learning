@@ -18,19 +18,24 @@ class _ChapterPlayScreenState extends State<ChapterPlayScreen> {
   @override
   void initState() {
     super.initState();
-    _controller =
-        VideoPlayerController.networkUrl(
-            Uri.parse(
-              'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-            ),
-          )
-          ..addListener(() {
-            setState(() {});
-          })
-          ..initialize().then((_) {
-            // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
-            setState(() {});
-          });
+    try {
+      _controller =
+          VideoPlayerController.networkUrl(
+              Uri.parse(
+                'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+              ),
+            )
+            ..addListener(() {
+              setState(() {});
+            })
+            ..initialize().then((_) {
+              // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
+              setState(() {});
+            });
+    } catch (e) {
+      print('exception catched $e');
+    }
+
     // _controller.play();
   }
 
@@ -107,7 +112,7 @@ class _ChapterPlayScreenState extends State<ChapterPlayScreen> {
                         ),
                       ),
                       Positioned(
-                        bottom: 0.0,
+                        bottom: -10,
                         left: 10.0,
                         right: 10.0,
                         child: Row(

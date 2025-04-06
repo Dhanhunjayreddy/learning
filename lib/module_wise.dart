@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:loginpage/course_inside.dart';
+
 import 'package:loginpage/courses.dart';
 
 class ModuleWise extends StatelessWidget {
