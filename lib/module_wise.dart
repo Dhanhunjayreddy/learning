@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:loginpage/chapter_play/chapter_play_screen.dart';
 import 'package:loginpage/courses.dart';
 
 class ModuleWise extends StatelessWidget {
@@ -62,30 +62,43 @@ class LessonCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      margin: const EdgeInsets.only(bottom: 12),
-      elevation: 1,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-      child: ListTile(
-        leading: Container(
-          width: 40,
-          height: 40,
-          decoration: BoxDecoration(color: Colors.blue, shape: BoxShape.circle),
-          child: const Icon(Icons.play_circle_outline, color: Colors.blue),
-        ),
-        title: Text(
-          lessonNumber,
-          style: const TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.bold,
-            color: Colors.black54,
+    return GestureDetector(
+      onTap: () {
+        if (lessonNumber == 'Lesson 1') {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => ChapterPlayScreen()),
+          );
+        }
+      },
+      child: Card(
+        margin: const EdgeInsets.only(bottom: 12),
+        elevation: 1,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        child: ListTile(
+          leading: Container(
+            width: 40,
+            height: 40,
+            decoration: BoxDecoration(
+              color: Colors.blue,
+              shape: BoxShape.circle,
+            ),
+            child: const Icon(Icons.play_circle_outline, color: Colors.blue),
           ),
+          title: Text(
+            lessonNumber,
+            style: const TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+              color: Colors.black54,
+            ),
+          ),
+          subtitle: Text(
+            title,
+            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+          ),
+          trailing: const Icon(Icons.chevron_right, color: Colors.grey),
         ),
-        subtitle: Text(
-          title,
-          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-        ),
-        trailing: const Icon(Icons.chevron_right, color: Colors.grey),
       ),
     );
   }

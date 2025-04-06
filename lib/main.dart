@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       debugShowCheckedModeBanner: false,
       routes: {
-        '/': (context) => ChapterPlayScreen(),
+        '/': (context) => LoginScreen(),
         '/home': (context) => HomeScreen(),
         '/course-page': (context) => CourseInside(),
         '/book_a_demo': (context) => BookDemoScreen(),
