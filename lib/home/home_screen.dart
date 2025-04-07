@@ -29,9 +29,17 @@ class HomeScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(decoration: BoxDecoration(color: Colors.blue)),
-              Text(
-                "Home",
-                style: TextStyle(color: HanvisuColorTheme.blackColor),
+              TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => HomeScreen()),
+                  );
+                },
+                child: Text(
+                  "Home",
+                  style: TextStyle(color: HanvisuColorTheme.blackColor),
+                ),
               ),
               TextButton(
                 onPressed: () {
@@ -42,6 +50,18 @@ class HomeScreen extends StatelessWidget {
                 },
                 child: Text(
                   "Profile",
+                  style: TextStyle(color: HanvisuColorTheme.blackColor),
+                ),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => CoursePage()),
+                  );
+                },
+                child: Text(
+                  'My Courses',
                   style: TextStyle(color: HanvisuColorTheme.blackColor),
                 ),
               ),
