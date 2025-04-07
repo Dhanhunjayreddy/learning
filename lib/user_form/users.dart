@@ -37,11 +37,15 @@ class _UsersListFormScreenState extends State<UsersListFormScreen> {
       appBar: AppBar(
         actions: [
           IconButton(
-            onPressed: () {
-              Navigator.push(
+            onPressed: () async {
+              String result = await Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => AdmissionFormPage()),
               );
+              print("result...$result");
+              if (result.toLowerCase() == "update") {
+                gettingFireBaseData();
+              }
             },
             icon: Icon(Icons.add),
           ),
@@ -67,7 +71,7 @@ class _UsersListFormScreenState extends State<UsersListFormScreen> {
                 );
                 print("result...$result");
                 if (result.toLowerCase() == "update") {
-                   gettingFireBaseData();
+                  gettingFireBaseData();
                 }
               },
               trailing: Icon(Icons.arrow_forward_ios_sharp),
