@@ -2,23 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:loginpage/login/login_screen.dart';
 
 class BookDemoScreen extends StatelessWidget {
-  const BookDemoScreen({super.key});
+   BookDemoScreen({super.key});
+  final border = OutlineInputBorder(
+    borderRadius: BorderRadius.circular(8),
+    borderSide: const BorderSide(color: Colors.grey),
+  );
+
+  InputDecoration inputDecoration(String hint) => InputDecoration(
+    hintText: hint,
+    hintStyle: const TextStyle(color: Colors.grey),
+    border: border,
+    enabledBorder: border,
+    focusedBorder: border,
+  );
 
   @override
   Widget build(BuildContext context) {
-    final border = OutlineInputBorder(
-      borderRadius: BorderRadius.circular(8),
-      borderSide: const BorderSide(color: Colors.grey),
-    );
-
-    InputDecoration inputDecoration(String hint) => InputDecoration(
-      hintText: hint,
-      hintStyle: const TextStyle(color: Colors.grey),
-      border: border,
-      enabledBorder: border,
-      focusedBorder: border,
-    );
-
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
